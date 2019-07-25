@@ -1,0 +1,11 @@
+[package]
+name = "inapp"
+version = "0.1.0"
+authors = ["Vladimir Tolmachev <tolm_vl@hotmail.com>"]
+edition = "2018"
+
+[dependencies]
+clap = "2.29"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
