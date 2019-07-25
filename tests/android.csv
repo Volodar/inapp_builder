@@ -1,2 +1,5 @@
 Product ID,Published State,Purchase Type,Auto Translate,Locale; Title; Description,Auto Fill Prices,Price,Pricing Template ID
-gold_100,published,managed_by_android,false,en_US; Gold Pack; 100 Gold Score in the Pack, true,990000,
+com.company.app.heropack1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,126990000,
+com.company.app.heropack1_1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,62990000,
+com.company.app.heropack1_2,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,126990000,
+com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,189990000,

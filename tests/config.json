@@ -1,7 +1,37 @@
-[{
-	"id": "gold_100",
-	"price": 1,
-	"locales": {
-		"en": ["Gold Pack", "100 Gold Score in the Pack"]
-	}
-}]
+{
+	"android": {
+		"config_currency": "usd",
+		"store_currency": "rub",
+		"bundle_id": "com.company.app"
+	},
+	"ios": {
+		"app_store_id": "111111111",
+		"team_id": "222222222",
+		"bundle_id": "com.company.app",
+		"app_name": "App Name",
+		"token": "app-metadata-token"
+	},
+	"products": [
+		{
+			"id": "heropack1",
+			"price": 2,
+			"consumable": false,
+			"image_path": "tests/gold1.jpg",
+			"price_variants": [
+				1,
+				2,
+				3
+			],
+			"locales": {
+				"en_US": {
+					"title": "Heroes Pack",
+					"description": "Heroes Pack"
+				},
+				"ru_RU": {
+					"title": "Набор Героев",
+					"description": "Набор Героев"
+				}
+			}
+		}
+	]
+}

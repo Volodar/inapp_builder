@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://apple.com/itunes/importer" version="software5.2">
+    <metadata_token>app-metadata-token</metadata_token>
+    <provider>222222222</provider>
+    <team_id>222222222</team_id>
+    <software>
+        <vendor_id>com.company.app</vendor_id>
+        <software_metadata>
+            <in_app_purchases>
+
+                <in_app_purchase>
+                    <locales>
+                        <locale name="en-US">
+                            <title>Heroes Pack</title>
+                            <description>Heroes Pack</description>
+                        </locale>
+                        <locale name="ru">
+                            <title>Набор Героев</title>
+                            <description>Набор Героев</description>
+                        </locale>
+                    </locales>
+                    <review_screenshot>
+                        <file_name>com.company.app.heropack1.jpg</file_name>
+                        <size>187029</size>
+                        <checksum type="md5">20ac75d5adf15bcb0be75d952896cbe1</checksum>
+                    </review_screenshot>
+                    <product_id>com.company.app.heropack1</product_id>
+                    <reference_name>heropack1</reference_name>
+                    <type>non-consumable</type>
+                    <products>
+                        <product>
+                            <cleared_for_sale>true</cleared_for_sale>
+                            <intervals>
+                                <interval>
+                                    <start_date>2017-07-12</start_date>
+                                    <wholesale_price_tier>2</wholesale_price_tier>
+                                </interval>
+                            </intervals>
+                        </product>
+                    </products>
+                </in_app_purchase>
+
+                <in_app_purchase>
+                    <locales>
+                        <locale name="en-US">
+                            <title>Heroes Pack</title>
+                            <description>Heroes Pack</description>
+                        </locale>
+                        <locale name="ru">
+                            <title>Набор Героев</title>
+                            <description>Набор Героев</description>
+                        </locale>
+                    </locales>
+                    <review_screenshot>
+                        <file_name>com.company.app.heropack1_1.jpg</file_name>
+                        <size>187029</size>
+                        <checksum type="md5">20ac75d5adf15bcb0be75d952896cbe1</checksum>
+                    </review_screenshot>
+                    <product_id>com.company.app.heropack1_1</product_id>
+                    <reference_name>heropack1_1</reference_name>
+                    <type>non-consumable</type>
+                    <products>
+                        <product>
+                            <cleared_for_sale>true</cleared_for_sale>
+                            <intervals>
+                                <interval>
+                                    <start_date>2017-07-12</start_date>
+                                    <wholesale_price_tier>1</wholesale_price_tier>
+                                </interval>
+                            </intervals>
+                        </product>
+                    </products>
+                </in_app_purchase>
+
+                <in_app_purchase>
+                    <locales>
+                        <locale name="en-US">
+                            <title>Heroes Pack</title>
+                            <description>Heroes Pack</description>
+                        </locale>
+                        <locale name="ru">
+                            <title>Набор Героев</title>
+                            <description>Набор Героев</description>
+                        </locale>
+                    </locales>
+                    <review_screenshot>
+                        <file_name>com.company.app.heropack1_2.jpg</file_name>
+                        <size>187029</size>
+                        <checksum type="md5">20ac75d5adf15bcb0be75d952896cbe1</checksum>
+                    </review_screenshot>
+                    <product_id>com.company.app.heropack1_2</product_id>
+                    <reference_name>heropack1_2</reference_name>
+                    <type>non-consumable</type>
+                    <products>
+                        <product>
+                            <cleared_for_sale>true</cleared_for_sale>
+                            <intervals>
+                                <interval>
+                                    <start_date>2017-07-12</start_date>
+                                    <wholesale_price_tier>2</wholesale_price_tier>
+                                </interval>
+                            </intervals>
+                        </product>
+                    </products>
+                </in_app_purchase>
+
+                <in_app_purchase>
+                    <locales>
+                        <locale name="en-US">
+                            <title>Heroes Pack</title>
+                            <description>Heroes Pack</description>
+                        </locale>
+                        <locale name="ru">
+                            <title>Набор Героев</title>
+                            <description>Набор Героев</description>
+                        </locale>
+                    </locales>
+                    <review_screenshot>
+                        <file_name>com.company.app.heropack1_3.jpg</file_name>
+                        <size>187029</size>
+                        <checksum type="md5">20ac75d5adf15bcb0be75d952896cbe1</checksum>
+                    </review_screenshot>
+                    <product_id>com.company.app.heropack1_3</product_id>
+                    <reference_name>heropack1_3</reference_name>
+                    <type>non-consumable</type>
+                    <products>
+                        <product>
+                            <cleared_for_sale>true</cleared_for_sale>
+                            <intervals>
+                                <interval>
+                                    <start_date>2017-07-12</start_date>
+                                    <wholesale_price_tier>3</wholesale_price_tier>
+                                </interval>
+                            </intervals>
+                        </product>
+                    </products>
+                </in_app_purchase>
+
+            </in_app_purchases>
+        </software_metadata>
+    </software>
+</package>
