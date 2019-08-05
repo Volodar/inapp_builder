@@ -115,24 +115,11 @@ mod tests {
             ios: Default::default(),
         };
         config.expand_price_variants();
-        let config = config;
-
-        let mut has_price1 = false;
-        let mut has_price2 = false;
-        let mut has_price3 = false;
-        for product in &config.products {
-            if product.id == "test" && product.price == 1.0 {
-                has_price1 = true;
-            } else if product.id == "test_2" && product.price == 2.0 {
-                has_price2 = true;
-            } else if product.id == "test_3" && product.price == 3.0 {
-                has_price3 = true;
-            } else {
-                assert!(false, "Unknown product");
-            }
-        }
-        assert!(has_price1, "Has default product");
-        assert!(has_price2, "Has product with price 2");
-        assert!(has_price3, "Has product with price 3");
+        assert_eq!(config.products[0].id, "test");
+        assert_eq!(config.products[0].price, 1.0);
+        assert_eq!(config.products[1].id, "test_2");
+        assert_eq!(config.products[1].price, 2.0);
+        assert_eq!(config.products[2].id, "test_3");
+        assert_eq!(config.products[2].price, 3.0);
     }
 }
