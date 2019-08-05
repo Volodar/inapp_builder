@@ -1,5 +1,3 @@
-extern crate maplit;
-
 use std::fs;
 
 use crate::builder::app::Product;

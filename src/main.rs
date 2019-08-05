@@ -1,17 +1,17 @@
-extern crate inapp;
+extern crate inapp_builder;
 
 use std::fs;
 use std::path::Path;
 
-use inapp::builder::app::{ANDROID, IOS};
+use inapp_builder::builder::app::{ANDROID, IOS};
 
 fn main() {
-    let args = inapp::builder::args::parse_args();
+    let args = inapp_builder::builder::args::parse_args();
     let json = fs::read_to_string(args.config_file).unwrap();
-    let app = inapp::builder::app::App::new(json, args.platforms);
+    let app = inapp_builder::builder::app::App::new(json);
 
     if args.platforms & ANDROID != 0 {
-        let csv = inapp::builder::writer_csv::WriterCsv::new().get_csv(&app);
+        let csv = inapp_builder::builder::writer_csv::WriterCsv::new().get_csv(&app);
         fs::write("".to_string() + &args.out_file + "/android.csv", &csv).unwrap();
     }
 
@@ -20,7 +20,7 @@ fn main() {
         if !Path::new(&dir).exists() {
             fs::create_dir(&dir).unwrap();
         }
-        let (local, meta) = inapp::builder::writer_itmsp::WriterItmsp::new(&args.out_file).get_itmsp(&app);
+        let (local, meta) = inapp_builder::builder::writer_itmsp::WriterItmsp::new(&args.out_file).get_itmsp(&app);
         fs::write("".to_string() + &args.out_file + "/ios.itmsp/machine-local-data.xml", &local).unwrap();
         fs::write("".to_string() + &args.out_file + "/ios.itmsp/metadata.xml", &meta).unwrap();
     }

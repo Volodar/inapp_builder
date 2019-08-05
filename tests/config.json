@@ -1,8 +1,7 @@
 {
   "android": {
-    "config_currency": "usd",
-    "store_currency": "rub",
-    "bundle_id": "com.company.app"
+    "bundle_id": "com.company.app",
+    "currency_rate": 65.0
   },
   "ios": {
     "app_store_id": "111111111",

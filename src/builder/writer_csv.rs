@@ -26,10 +26,8 @@ impl WriterCsv{
     }
 
     fn get_price(app: &App, product: &Product) -> f32 {
-        let value = app.currency_converter.convert(&app.config.android.config_currency,
-                                                   &app.config.android.store_currency,
-                                                   product.price);
-        let value = app.currency_converter.round_price(value) * 1000000.0;
+        let value = app.config.android.currency_rate * product.price;
+        let value = WriterCsv::round_price(value) * 1000000.0;
         value.round()
     }
 
@@ -38,7 +36,13 @@ impl WriterCsv{
         for (lang, locale) in &product.locales {
             out += &format!("{}; {}; {}; ", lang, locale.title, locale.description);
         }
-        out.truncate(out.len() - 2);
+        if out.len() > 2 {
+            out.truncate(out.len() - 2);
+        }
         out
+    }
+
+    fn round_price(price: f32) -> f32 {
+        price.round() - 0.01
     }
 }
