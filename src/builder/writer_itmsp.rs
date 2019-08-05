@@ -6,11 +6,12 @@ use super::app::App;
 
 pub struct WriterItmsp {
     out_directory: String,
+    pub with_copy_images: bool,
 }
 
 impl WriterItmsp {
     pub fn new(out_directory: &String) -> WriterItmsp {
-        WriterItmsp { out_directory: out_directory.to_string() }
+        WriterItmsp { out_directory: out_directory.to_string(), with_copy_images: true }
     }
 
     pub fn get_itmsp(&self, app: &App) -> (String, String) {
@@ -41,10 +42,12 @@ impl WriterItmsp {
         for product in &app.config.products {
             let image_out = "".to_string() + &app.config.ios.bundle_id + "." + &product.id + ".jpg";
             let image_out_full_path = "".to_string() + &self.out_directory + "/ios.itmsp/" + &image_out;
-            fs::copy(&product.image_path, &image_out_full_path).unwrap();
-            let image_size = fs::metadata(&image_out_full_path).unwrap().len();
+            if self.with_copy_images {
+                fs::copy(&product.image_path, &image_out_full_path).unwrap();
+            }
+            let image_size = fs::metadata(&product.image_path).unwrap().len();
             let mut md5_context = md5::Context::new();
-            md5_context.consume(fs::read(&image_out_full_path).unwrap());
+            md5_context.consume(fs::read(&product.image_path).unwrap());
             let checksum = md5_context.compute();
 
             let locales = self.build_locales(product);

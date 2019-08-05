@@ -17,6 +17,9 @@ fn main() {
 
     if args.platforms & IOS != 0 {
         let dir = "".to_string() + &args.out_file + "/ios.itmsp";
+        if !Path::new(&args.out_file).exists() {
+            fs::create_dir(&args.out_file).unwrap();
+        }
         if !Path::new(&dir).exists() {
             fs::create_dir(&dir).unwrap();
         }

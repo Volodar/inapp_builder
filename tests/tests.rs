@@ -22,7 +22,8 @@ mod tests {
         let original_local = get_ios_itmsp_local_data();
 
         let app = inapp_builder::builder::app::App::new(json);
-        let writer = inapp_builder::builder::writer_itmsp::WriterItmsp::new(&"out".to_string());
+        let mut writer = inapp_builder::builder::writer_itmsp::WriterItmsp::new(&"out".to_string());
+        writer.with_copy_images = false;
         let (local, meta) = writer.get_itmsp(&app);
         assert_eq!(original_meta, meta);
         assert_eq!(original_local, local);

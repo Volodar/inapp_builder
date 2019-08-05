@@ -1,6 +1,11 @@
 # In-app packages builder
 Tool to generate in-app itmsp/csv package (iTunesConnect, Play Market stores)
 
+| ci       | Status                                                                                                                                      |
+|----------|---------------------------------------------------------------------------------------------------------------------------------------------|
+| Travis   | [![Build Status](https://travis-ci.org/Volodar/inapp_builder.svg?branch=#)](https://travis-ci.org/Volodar/inapp_builder)                   |
+
+
 #### An example json config (products.json):
 ```
 {
