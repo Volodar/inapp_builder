@@ -47,7 +47,7 @@ Use Application Loader application to upload generated in-apps to the App Store
 
 ### Config details:
 
-##### Play Market
+#### Play Market
 ```
   "android": {
     "bundle_id": "com.company.app"
@@ -59,7 +59,7 @@ Use Application Loader application to upload generated in-apps to the App Store
 |bundle_id|A package name of the application |
 |currency_rate|A rate to convert price tier from the config to Play Market default price |
 
-##### App Store
+#### App Store
 ```
   "ios": {
     "bundle_id": "com.company.app",
@@ -88,7 +88,7 @@ Then open the file 111111111.itmsp/metadata.xml and find the line:
 <metadata_token>5685189406560-f38766f68765157ad0fc5f3a3a...</metadata_token>
 ```
 
-##### Product Description
+#### Product Description
 ```
 {
   "id": "heropack1",
