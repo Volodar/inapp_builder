@@ -1,0 +1,13 @@
+language: rust
+rust:
+  - 1.1.0
+
+before_cache:
+  - rm -rf "$TRAVIS_HOME/.cargo/registry/src"
+
+cache:
+  cargo: true
+
+script:
+  - cargo build --verbose --all
+  - cargo test --verbose --all
