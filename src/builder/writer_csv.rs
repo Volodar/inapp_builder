@@ -1,6 +1,7 @@
 use super::app::App;
 use super::app::Product;
 
+#[derive(Default)]
 pub struct WriterCsv{
 }
 
@@ -27,7 +28,7 @@ impl WriterCsv{
 
     fn get_price(app: &App, product: &Product) -> f32 {
         let value = app.config.android.currency_rate * product.price;
-        let value = WriterCsv::round_price(value) * 1000000.0;
+        let value = WriterCsv::round_price(value) * 1_000_000.0;
         value.round()
     }
 

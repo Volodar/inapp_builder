@@ -43,9 +43,9 @@ pub fn parse_args() -> AppArgs{
     let platforms: Vec<&str> = platforms.split(',').collect();
     for platform in platforms {
         if platform.to_lowercase() == "ios" {
-            args.platforms = args.platforms | IOS;
+            args.platforms |= IOS;
         } else if platform.to_lowercase() == "android" {
-            args.platforms = args.platforms | ANDROID;
+            args.platforms |= ANDROID;
         }
     }
     args

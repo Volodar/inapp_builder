@@ -74,7 +74,7 @@ impl Config {
             for price in &product.price_variants {
                 let mut variant = product.clone();
                 variant.price = *price;
-                variant.id = variant.id + &"_" + &format!("{}", variant.price);
+                variant.id = format!("{}_{}", variant.id, variant.price);
                 new_products.push(variant);
             }
         }
@@ -116,10 +116,10 @@ mod tests {
         };
         config.expand_price_variants();
         assert_eq!(config.products[0].id, "test");
-        assert_eq!(config.products[0].price, 1.0);
         assert_eq!(config.products[1].id, "test_2");
-        assert_eq!(config.products[1].price, 2.0);
         assert_eq!(config.products[2].id, "test_3");
-        assert_eq!(config.products[2].price, 3.0);
+        assert!((config.products[0].price - 1.0).abs() < 0.01);
+        assert!((config.products[1].price - 2.0).abs() < 0.01);
+        assert!((config.products[2].price - 3.0).abs() < 0.01);
     }
 }

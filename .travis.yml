@@ -5,12 +5,13 @@ rust:
 cache:
   cargo: true
 
-
 os:
   - linux
   - osx
 
-
+before_script:
+  - rustup component add clippy
 script:
   - cargo build --verbose
+  - cargo clippy --all-targets --all-features -- -D warnings
   - cargo test --verbose

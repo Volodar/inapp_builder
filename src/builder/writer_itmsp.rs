@@ -11,7 +11,7 @@ pub struct WriterItmsp {
 }
 
 impl WriterItmsp {
-    pub fn new(out_directory: &String) -> WriterItmsp {
+    pub fn new(out_directory: &str) -> WriterItmsp {
         WriterItmsp { out_directory: out_directory.to_string(), with_copy_images: true }
     }
 
@@ -89,7 +89,7 @@ impl WriterItmsp {
         image_out
     }
 
-    fn get_full_path_out_image(&self, image_out: &String) -> String {
+    fn get_full_path_out_image(&self, image_out: &str) -> String {
         format!("{}ios.itmsp/{}", &self.out_directory, &image_out)
     }
 
