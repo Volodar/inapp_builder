@@ -22,11 +22,11 @@ impl WriterCsv{
         csv
     }
 
-    fn get_sku(app_bundle_id: &String, product_id: &String) -> String {
-        if app_bundle_id.len() > 0 {
-            return format!("{}.{}", app_bundle_id, product_id);
+    fn get_sku(app_bundle_id: &str, product_id: &str) -> String {
+        if app_bundle_id.is_empty() {
+            return product_id.to_string();
         } else {
-            return format!("{}", product_id);
+            return format!("{}.{}", app_bundle_id, product_id);
         }
     }
 
@@ -56,8 +56,8 @@ mod tests {
 
     #[test]
     fn test_get_sku() {
-        assert_eq!(WriterCsv::get_sku(&"".to_string(), &"test_purchase".to_string()), "test_purchase".to_string());
-        assert_eq!(WriterCsv::get_sku(&"bundle".to_string(), &"test_purchase".to_string()), "bundle.test_purchase".to_string());
+        assert_eq!(WriterCsv::get_sku("", "test_purchase"), "test_purchase");
+        assert_eq!(WriterCsv::get_sku("bundle", "test_purchase"), "bundle.test_purchase");
     }
 
     #[test]
@@ -76,7 +76,7 @@ mod tests {
         assert_eq!(WriterCsv::get_price(70.0, 10_000_000.0), 699_999_999_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 100_000_000.0), 6_999_999_999_990_000);
 
-        assert_eq!(WriterCsv::get_price(1.0, 1.0), 0_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 1.0), 990_000);
         assert_eq!(WriterCsv::get_price(1.0, 2.0), 1_990_000);
         assert_eq!(WriterCsv::get_price(1.0, 3.0), 2_990_000);
         assert_eq!(WriterCsv::get_price(1.0, 4.0), 3_990_000);
