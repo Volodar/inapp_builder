@@ -24,9 +24,9 @@ impl WriterCsv{
 
     fn get_sku(app_bundle_id: &str, product_id: &str) -> String {
         if app_bundle_id.is_empty() {
-            return product_id.to_string();
+            product_id.to_string()
         } else {
-            return format!("{}.{}", app_bundle_id, product_id);
+            format!("{}.{}", app_bundle_id, product_id)
         }
     }
 
