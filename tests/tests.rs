@@ -31,10 +31,10 @@ mod tests {
 
     fn get_android_csv() -> String {
         r#"Product ID,Published State,Purchase Type,Auto Translate,Locale; Title; Description,Auto Fill Prices,Price,Pricing Template ID
-com.company.app.heropack1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990010,
-com.company.app.heropack1_1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,64989996,
-com.company.app.heropack1_2,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990010,
-com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,194990000,
+com.company.app.heropack1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990000,
+com.company.app.heropack1_1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990000,
+com.company.app.heropack1_2,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,259990000,
+com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,389990000,
 "#.to_string()
     }
 
@@ -129,7 +129,7 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                             <intervals>
                                 <interval>
                                     <start_date>2017-07-12</start_date>
-                                    <wholesale_price_tier>1</wholesale_price_tier>
+                                    <wholesale_price_tier>2</wholesale_price_tier>
                                 </interval>
                             </intervals>
                         </product>
@@ -161,7 +161,7 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                             <intervals>
                                 <interval>
                                     <start_date>2017-07-12</start_date>
-                                    <wholesale_price_tier>2</wholesale_price_tier>
+                                    <wholesale_price_tier>4</wholesale_price_tier>
                                 </interval>
                             </intervals>
                         </product>
@@ -193,7 +193,7 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                             <intervals>
                                 <interval>
                                     <start_date>2017-07-12</start_date>
-                                    <wholesale_price_tier>3</wholesale_price_tier>
+                                    <wholesale_price_tier>6</wholesale_price_tier>
                                 </interval>
                             </intervals>
                         </product>

@@ -57,11 +57,16 @@ impl ConfigIos {
     }
 }
 
+fn default_as_false() -> bool {
+    false
+}
 
 #[derive(Deserialize)]
 pub struct Config{
     pub products: Vec<Product>,
 
+    #[serde(default = "default_as_false")]
+    pub price_variant_multiplier: bool,
     #[serde(default)]
     pub android: ConfigAndroid,
     #[serde(default)]
@@ -71,11 +76,16 @@ impl Config {
     pub fn expand_price_variants(&mut self) {
         let mut new_products: Vec<Product> = Vec::new();
         for product in &self.products {
+            let mut number: i16 = 1;
             for price in &product.price_variants {
                 let mut variant = product.clone();
                 variant.price = *price;
-                variant.id = format!("{}_{}", variant.id, variant.price);
+                if self.price_variant_multiplier {
+                    variant.price *= product.price;
+                }
+                variant.id = format!("{}_{}", variant.id, number);
                 new_products.push(variant);
+                number += 1;
             }
         }
         self.products.append(new_products.as_mut());
@@ -110,15 +120,66 @@ mod tests {
             image_path: "".to_string(),
         };
         let mut config = Config {
+            price_variant_multiplier: false,
             products: vec![product],
             android: Default::default(),
             ios: Default::default(),
         };
         config.expand_price_variants();
         assert_eq!(config.products[0].id, "test");
-        assert_eq!(config.products[1].id, "test_2");
-        assert_eq!(config.products[2].id, "test_3");
+        assert_eq!(config.products[1].id, "test_1");
+        assert_eq!(config.products[2].id, "test_2");
         assert!((config.products[0].price - 1.0).abs() < 0.01);
+        assert!((config.products[1].price - 2.0).abs() < 0.01);
+        assert!((config.products[2].price - 3.0).abs() < 0.01);
+    }
+
+    #[test]
+    fn test_config_expand_price_variants_2() {
+        let product = Product {
+            id: "test".to_string(),
+            price: 2.0,
+            locales: Default::default(),
+            consumable: false,
+            price_variants: vec![2.0, 3.0],
+            image_path: "".to_string(),
+        };
+        let mut config = Config {
+            price_variant_multiplier: true,
+            products: vec![product],
+            android: Default::default(),
+            ios: Default::default(),
+        };
+        config.expand_price_variants();
+        assert_eq!(config.products[0].id, "test");
+        assert_eq!(config.products[1].id, "test_1");
+        assert_eq!(config.products[2].id, "test_2");
+        assert!((config.products[0].price - 2.0).abs() < 0.01);
+        assert!((config.products[1].price - 4.0).abs() < 0.01);
+        assert!((config.products[2].price - 6.0).abs() < 0.01);
+    }
+
+    #[test]
+    fn test_config_expand_price_variants_3() {
+        let product = Product {
+            id: "test".to_string(),
+            price: 2.0,
+            locales: Default::default(),
+            consumable: false,
+            price_variants: vec![2.0, 3.0],
+            image_path: "".to_string(),
+        };
+        let mut config = Config {
+            price_variant_multiplier: false,
+            products: vec![product],
+            android: Default::default(),
+            ios: Default::default(),
+        };
+        config.expand_price_variants();
+        assert_eq!(config.products[0].id, "test");
+        assert_eq!(config.products[1].id, "test_1");
+        assert_eq!(config.products[2].id, "test_2");
+        assert!((config.products[0].price - 2.0).abs() < 0.01);
         assert!((config.products[1].price - 2.0).abs() < 0.01);
         assert!((config.products[2].price - 3.0).abs() < 0.01);
     }
