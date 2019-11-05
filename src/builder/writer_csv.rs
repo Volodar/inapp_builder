@@ -62,33 +62,33 @@ mod tests {
 
     #[test]
     fn test_get_price() {
-        assert_eq!(WriterCsv::get_price(70.0, 1.0), 69990000);
-        assert_eq!(WriterCsv::get_price(70.0, 2.0), 139990000);
-        assert_eq!(WriterCsv::get_price(70.0, 3.0), 209990000);
-        assert_eq!(WriterCsv::get_price(70.0, 4.0), 279990000);
-        assert_eq!(WriterCsv::get_price(70.0, 5.0), 349990000);
-        assert_eq!(WriterCsv::get_price(70.0, 10.0), 699990000);
-        assert_eq!(WriterCsv::get_price(70.0, 100.0), 6999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 1000.0), 69999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 10000.0), 699999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 100000.0), 6999999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 1000000.0), 69999999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 10000000.0), 699999999990000);
-        assert_eq!(WriterCsv::get_price(70.0, 100000000.0), 6999999999990000);
+        assert_eq!(WriterCsv::get_price(70.0, 1.0), 69_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 2.0), 139_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 3.0), 209_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 4.0), 279_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 5.0), 349_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 10.0), 699_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 100.0), 6_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 1_000.0), 69_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 10_000.0), 699_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 100_000.0), 6_999_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 1_000_000.0), 69_999_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 10_000_000.0), 699_999_999_990_000);
+        assert_eq!(WriterCsv::get_price(70.0, 100_000_000.0), 6_999_999_999_990_000);
 
-        assert_eq!(WriterCsv::get_price(1.0, 1.0), 0990000);
-        assert_eq!(WriterCsv::get_price(1.0, 2.0), 1990000);
-        assert_eq!(WriterCsv::get_price(1.0, 3.0), 2990000);
-        assert_eq!(WriterCsv::get_price(1.0, 4.0), 3990000);
-        assert_eq!(WriterCsv::get_price(1.0, 5.0), 4990000);
-        assert_eq!(WriterCsv::get_price(1.0, 10.0), 9990000);
-        assert_eq!(WriterCsv::get_price(1.0, 100.0), 99990000);
-        assert_eq!(WriterCsv::get_price(1.0, 1000.0), 999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 10000.0), 9999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 100000.0), 99999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 1000000.0), 999999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 10000000.0), 9999999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 100000000.0), 99999999990000);
-        assert_eq!(WriterCsv::get_price(1.0, 1000000000.0), 999999999990000);
+        assert_eq!(WriterCsv::get_price(1.0, 1.0), 0_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 2.0), 1_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 3.0), 2_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 4.0), 3_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 5.0), 4_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 10.0), 9_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 100.0), 99_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 1_000.0), 999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 10_000.0), 9_999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 100_000.0), 99_999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 1_000_000.0), 999_999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 10_000_000.0), 9_999_999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 100_000_000.0), 99_999_999_990_000);
+        assert_eq!(WriterCsv::get_price(1.0, 1_000_000_000.0), 999_999_999_990_000);
     }
 }
