@@ -1,9 +1,11 @@
 use std::fs;
+use std::process;
+
+use md5::Digest;
 
 use crate::builder::app::Product;
 
 use super::app::App;
-use md5::Digest;
 
 pub struct WriterItmsp {
     out_directory: String,
@@ -84,7 +86,13 @@ impl WriterItmsp {
         let image_out = WriterItmsp::get_out_image_file_name(&app, &product);
         let image_out_full_path = self.get_full_path_out_image(&image_out);
         if self.with_copy_images {
-            fs::copy(&product.image_path, &image_out_full_path).unwrap();
+            match fs::copy(&product.image_path, &image_out_full_path) {
+                Result::Ok(_) => return image_out,
+                Result::Err(_) => {
+                    eprintln!("Image [{}] for product [{}] not found", &product.image_path, &product.id);
+                    process::exit(0x1);
+                },
+            }
         }
         image_out
     }
