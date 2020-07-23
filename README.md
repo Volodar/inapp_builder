@@ -86,11 +86,11 @@ Use Application Loader application to upload generated in-apps to the App Store
 
 Run on terminal (OS X):
 
-```iTMSTransporter -m lookupMetadata -u {login} -p "{password}" -destination .``` 
+```iTMSTransporter -m lookupMetadata -u {login} -p "{app-specific-password}" -apple_id {app_store_id} -destination . -subitemtype InAppPurchase``` 
 
 Then open the file 111111111.itmsp/metadata.xml and find the line:
 ```
-<metadata_token>5685189406560-f38766f68765157ad0fc5f3a3a...</metadata_token>
+<metadata_token>1234567890-1234567890abcdef1234567890abcdef...</metadata_token>
 ```
 
 #### Product Description
