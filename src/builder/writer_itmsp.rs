@@ -44,6 +44,8 @@ impl WriterItmsp {
     fn build_products(&self, app: &App) -> String {
         let mut products: String = String::new();
         for product in &app.config.products {
+            self.validate_locales(product);
+
             let image_out = self.copy_image(&app, &product);
             let image_size = fs::metadata(&product.image_path).unwrap().len();
             let checksum = WriterItmsp::get_checksum(&product);
@@ -75,6 +77,14 @@ impl WriterItmsp {
         }
         locales
     }
+    fn validate_locales(&self, product: &Product) {
+        for (_, locale) in &product.locales {
+            if locale.description.len() < 10 {
+                eprintln!("Description of product [{}] is small (less than 10 symbols). Description: [{}]", &product.id, &locale.description);
+                process::exit(0x1);
+            }
+        }
+    }
 
     fn get_checksum(product: &Product) -> Digest {
         let mut md5_context = md5::Context::new();
@@ -83,7 +93,7 @@ impl WriterItmsp {
     }
 
     fn copy_image(&self, app: &App, product: &Product) -> String {
-        let image_out = WriterItmsp::get_out_image_file_name(&app, &product);
+        let image_out = WriterItmsp::get_out_image_file_name(&app, &product, &product.image_path);
         let image_out_full_path = self.get_full_path_out_image(&image_out);
         if self.with_copy_images {
             match fs::copy(&product.image_path, &image_out_full_path) {
@@ -101,8 +111,22 @@ impl WriterItmsp {
         format!("{}ios.itmsp/{}", &self.out_directory, &image_out)
     }
 
-    fn get_out_image_file_name(app: &App, product: &Product) -> String {
-        format!("{}.{}.jpg", &app.config.ios.bundle_id, &product.id)
+    fn get_out_image_file_name(app: &App, product: &Product, in_image: &String) -> String {
+        let k = in_image.rfind('.');
+        match k {
+            Some(x) => {
+                let ext = in_image[x + 1..].to_lowercase();
+                if ext != "png" && ext != "jpg" {
+                    eprintln!("Image [{}] for product [{}] has unknown format: [{}]", &product.image_path, &product.id, &ext);
+                    process::exit(0x1);
+                }
+                return format!("{}.{}.{}", &app.config.ios.bundle_id, &product.id, ext);
+            }
+            None => {
+                eprintln!("Image [{}] for product [{}] has unknown format", &product.image_path, &product.id);
+                process::exit(0x1);
+            }
+        }
     }
 
     fn get_local_data_template() -> String {
