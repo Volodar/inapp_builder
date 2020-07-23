@@ -78,7 +78,7 @@ impl WriterItmsp {
         locales
     }
     fn validate_locales(&self, product: &Product) {
-        for (_, locale) in &product.locales {
+        for locale in product.locales.values() {
             if locale.description.len() < 10 {
                 eprintln!("Description of product [{}] is small (less than 10 symbols). Description: [{}]", &product.id, &locale.description);
                 process::exit(0x1);
@@ -111,7 +111,7 @@ impl WriterItmsp {
         format!("{}ios.itmsp/{}", &self.out_directory, &image_out)
     }
 
-    fn get_out_image_file_name(app: &App, product: &Product, in_image: &String) -> String {
+    fn get_out_image_file_name(app: &App, product: &Product, in_image: &str) -> String {
         let k = in_image.rfind('.');
         match k {
             Some(x) => {
