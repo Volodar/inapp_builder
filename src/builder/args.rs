@@ -14,18 +14,35 @@ pub struct AppArgs {
 }
 
 pub fn parse_args() -> AppArgs{
+    let default_in = "config.json";
+    let default_out = ".";
+    let default_platforms = "a,i,b";
     let app = App::new("Inapp purchases configs builder")
         .version("0.1")
         .author("Vladimir Tolmachev. <tolm_vl@hotmail.com>")
-        .about("Build inapp csv for Google Play Market (android)")
-        .args_from_usage("-f, --file=[path] 'Path to config json with iap products'
-                          -p, --platform=[platforms] 'List of platforms (android, ios)'"
-        ).arg(Arg::with_name("out")
-        .short("o")
-        .long("out")
-        .value_name("path")
-        .help("Path to out directory with csv/itmsp files")
-        .required(false));
+        .about("Build inapp csv for Google Play Market (android), ios.itmsp for AppStore Connect")
+        .arg(Arg::with_name("in")
+            .short("i")
+            .long("in")
+            .value_name("path")
+            .default_value(&default_in)
+            .help("Path to config.json file")
+            .required(true))
+        .arg(Arg::with_name("out")
+            .short("o")
+            .long("out")
+            .value_name("path")
+            .default_value(&default_out)
+            .help("Path to out directory with csv/itmsp files")
+            .required(true))
+        .arg(Arg::with_name("platforms")
+            .short("p")
+            .long("platform")
+            .value_name("path")
+            .default_value(&default_platforms)
+            .help("list of platforms (android [a], ios [i])")
+            .required(true))
+        ;
 
     let matches = app.get_matches();
     let mut args = AppArgs {
@@ -33,18 +50,18 @@ pub fn parse_args() -> AppArgs{
         out_directory: "".to_string(),
         platforms: 0,
     };
-    args.config_file = matches.value_of("file").unwrap().to_string();
-    args.out_directory = matches.value_of("out").unwrap().to_string();
+    args.config_file = matches.value_of("in").unwrap_or(default_in).to_string();
+    args.out_directory = matches.value_of("out").unwrap_or(default_out).to_string();
     if !args.out_directory.ends_with('/'){
         args.out_directory += "/";
     }
 
-    let platforms = matches.value_of("platform").unwrap().to_string();
+    let platforms = matches.value_of("platform").unwrap_or(default_platforms).to_string();
     let platforms: Vec<&str> = platforms.split(',').collect();
     for platform in platforms {
-        if platform.to_lowercase() == "ios" {
+        if platform.to_lowercase() == "ios" || platform.to_lowercase() == "i" {
             args.platforms |= IOS;
-        } else if platform.to_lowercase() == "android" {
+        } else if platform.to_lowercase() == "android" || platform.to_lowercase() == "a" {
             args.platforms |= ANDROID;
         }
     }
