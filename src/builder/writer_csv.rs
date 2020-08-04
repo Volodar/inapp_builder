@@ -22,7 +22,7 @@ impl WriterCsv{
         csv
     }
 
-    fn get_sku(app_bundle_id: &str, product_id: &str) -> String {
+    pub fn get_sku(app_bundle_id: &str, product_id: &str) -> String {
         if app_bundle_id.is_empty() {
             product_id.to_string()
         } else {
@@ -30,7 +30,7 @@ impl WriterCsv{
         }
     }
 
-    fn get_price(rate: f32, price: f32) -> i64 {
+    pub fn get_price(rate: f32, price: f32) -> i64 {
         let mut value = rate as i64 * price as i64 * 100;
         value -= 1;
         value *= 10_000;

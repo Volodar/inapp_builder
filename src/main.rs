@@ -3,7 +3,7 @@ extern crate inapp_builder;
 use std::{fs, process};
 use std::path::Path;
 
-use inapp_builder::builder::app::{ANDROID, IOS};
+use inapp_builder::builder::app::{ANDROID, IOS, BOOT_STRAP};
 
 fn main() {
     let args = inapp_builder::builder::args::parse_args();
@@ -29,6 +29,8 @@ fn main() {
     }
 
     if args.platforms & ANDROID != 0 {
+        println!("\n\nWrite android.csv. To the Google Play Publish");
+
         let csv = inapp_builder::builder::writer_csv::WriterCsv::new().get_csv(&app);
         let android_csv = "".to_string() + &args.out_directory + "android.csv";
         match fs::write(&android_csv, &csv){
@@ -41,7 +43,27 @@ fn main() {
         }
     }
 
+    if args.platforms & BOOT_STRAP != 0 {
+        println!("\n\nWrite jsons. To the bootstrap (Google Play Publish). See: https://github.com/Triple-T/gradle-play-publisher#publishing-in-app-products");
+
+        let products = inapp_builder::builder::writer_android_bootstrap::WriterBootstrap::new().get_products(&app);
+        for product in &products {
+            let string = serde_json::to_string_pretty(&product).unwrap();
+            let file_path= format!("{}{}.json", &args.out_directory, &product.sku);
+            match fs::write(&file_path, &string){
+                Err(e) => {
+                    eprintln!("Cannot write to [{}]", &file_path);
+                    eprintln!("{}", &e);
+                    process::exit(0x13);
+                }
+                Ok(_) => println!(" - Success wrote data to [{}]", &file_path)
+            }
+        }
+    }
+
     if args.platforms & IOS != 0 {
+        println!("\n\nWrite ios.itmsp bundle. To the Apple AppStore Connect. Use Transporter app to upload this bundle");
+
         let dir = "".to_string() + &args.out_directory + "ios.itmsp";
         if !Path::new(&dir).exists() {
             match fs::create_dir(&dir){

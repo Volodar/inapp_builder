@@ -31,10 +31,10 @@ mod tests {
 
     fn get_android_csv() -> String {
         r#"Product ID,Published State,Purchase Type,Auto Translate,Locale; Title; Description,Auto Fill Prices,Price,Pricing Template ID
-com.company.app.heropack1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990000,
-com.company.app.heropack1_1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,129990000,
-com.company.app.heropack1_2,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,259990000,
-com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack; ru_RU; Набор Героев; Набор Героев, true,389990000,
+com.company.app.heropack1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack Desc; ru_RU; Набор Героев; Набор Героев Desc, true,129990000,
+com.company.app.heropack1_1,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack Desc; ru_RU; Набор Героев; Набор Героев Desc, true,129990000,
+com.company.app.heropack1_2,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack Desc; ru_RU; Набор Героев; Набор Героев Desc, true,259990000,
+com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pack; Heroes Pack Desc; ru_RU; Набор Героев; Набор Героев Desc, true,389990000,
 "#.to_string()
     }
 
@@ -76,11 +76,11 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                     <locales>
                         <locale name="en-US">
                             <title>Heroes Pack</title>
-                            <description>Heroes Pack</description>
+                            <description>Heroes Pack Desc</description>
                         </locale>
                         <locale name="ru">
                             <title>Набор Героев</title>
-                            <description>Набор Героев</description>
+                            <description>Набор Героев Desc</description>
                         </locale>
                     </locales>
                     <review_screenshot>
@@ -108,11 +108,11 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                     <locales>
                         <locale name="en-US">
                             <title>Heroes Pack</title>
-                            <description>Heroes Pack</description>
+                            <description>Heroes Pack Desc</description>
                         </locale>
                         <locale name="ru">
                             <title>Набор Героев</title>
-                            <description>Набор Героев</description>
+                            <description>Набор Героев Desc</description>
                         </locale>
                     </locales>
                     <review_screenshot>
@@ -140,11 +140,11 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                     <locales>
                         <locale name="en-US">
                             <title>Heroes Pack</title>
-                            <description>Heroes Pack</description>
+                            <description>Heroes Pack Desc</description>
                         </locale>
                         <locale name="ru">
                             <title>Набор Героев</title>
-                            <description>Набор Героев</description>
+                            <description>Набор Героев Desc</description>
                         </locale>
                     </locales>
                     <review_screenshot>
@@ -172,11 +172,11 @@ com.company.app.heropack1_3,published,managed_by_android,false,en_US; Heroes Pac
                     <locales>
                         <locale name="en-US">
                             <title>Heroes Pack</title>
-                            <description>Heroes Pack</description>
+                            <description>Heroes Pack Desc</description>
                         </locale>
                         <locale name="ru">
                             <title>Набор Героев</title>
-                            <description>Набор Героев</description>
+                            <description>Набор Героев Desc</description>
                         </locale>
                     </locales>
                     <review_screenshot>

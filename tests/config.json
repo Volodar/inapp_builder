@@ -2,7 +2,9 @@
   "price_variant_multiplier": true,
   "android": {
     "bundle_id": "com.company.app",
-    "currency_rate": 65.0
+    "currency_rate": 65.0,
+    "default_language": "en_US",
+    "default_currency": "RUB"
   },
   "ios": {
     "app_store_id": "111111111",
@@ -25,11 +27,11 @@
       "locales": {
         "en_US": {
           "title": "Heroes Pack",
-          "description": "Heroes Pack"
+          "description": "Heroes Pack Desc"
         },
         "ru_RU": {
           "title": "Набор Героев",
-          "description": "Набор Героев"
+          "description": "Набор Героев Desc"
         }
       }
     }

@@ -2,13 +2,15 @@ use std::collections::BTreeMap;
 
 use serde;
 use serde::Deserialize;
+use serde::Serialize;
 use serde_json;
 
 pub static ANDROID: i32 = 0x1;
 pub static IOS: i32 = 0x2;
+pub static BOOT_STRAP: i32 = 0x4;
 
 
-#[derive(Deserialize, Clone)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Locale{
     pub title: String,
     pub description: String,
@@ -34,6 +36,8 @@ pub struct Product{
 pub struct ConfigAndroid {
     pub bundle_id: String,
     pub currency_rate: f32,
+    pub default_language: String,
+    pub default_currency: String,
 }
 
 
