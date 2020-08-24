@@ -75,7 +75,7 @@ fn main() {
                 Ok(_) => println!(" - Success create bundle [{}]", &dir)
             }
         }
-        let (local, meta) = inapp_builder::builder::writer_itmsp::WriterItmsp::new(&args.out_directory).get_itmsp(&app);
+        let (local, meta) = inapp_builder::builder::writer_itmsp::WriterItmsp::new(&args.out_directory, &args.config_file).get_itmsp(&app);
         let local_xml = "".to_string() + &args.out_directory + "ios.itmsp/machine-local-data.xml";
         let metadata_xml = "".to_string() + &args.out_directory + "ios.itmsp/metadata.xml";
 

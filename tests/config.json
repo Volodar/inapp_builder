@@ -18,7 +18,7 @@
       "id": "heropack1",
       "price": 2,
       "consumable": false,
-      "image_path": "tests/gold1.jpg",
+      "image_path": "images/gold1.jpg",
       "price_variants": [
         1,
         2,

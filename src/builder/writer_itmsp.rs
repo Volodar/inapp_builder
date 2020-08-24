@@ -1,6 +1,6 @@
 use std::fs;
 use std::process;
-
+use std::path::Path;
 use md5::Digest;
 
 use crate::builder::app::Product;
@@ -9,12 +9,17 @@ use super::app::App;
 
 pub struct WriterItmsp {
     out_directory: String,
+    config_path: String,
     pub with_copy_images: bool,
 }
 
 impl WriterItmsp {
-    pub fn new(out_directory: &str) -> WriterItmsp {
-        WriterItmsp { out_directory: out_directory.to_string(), with_copy_images: true }
+    pub fn new(out_directory: &str, config_path: &str) -> WriterItmsp {
+        WriterItmsp {
+            out_directory: out_directory.to_string(),
+            config_path: config_path.to_string(),
+            with_copy_images: true
+        }
     }
 
     pub fn get_itmsp(&self, app: &App) -> (String, String) {
@@ -47,8 +52,8 @@ impl WriterItmsp {
             self.validate_locales(product);
 
             let image_out = self.copy_image(&app, &product);
-            let image_size = fs::metadata(&product.image_path).unwrap().len();
-            let checksum = WriterItmsp::get_checksum(&product);
+            let image_size = fs::metadata(self.get_full_path_in_image(&product.image_path)).unwrap().len();
+            let checksum = self.get_checksum(&product);
             let locales = self.build_locales(product);
             let tier = WriterItmsp::get_tier(product.price);
             let iap_type = if product.consumable { "consumable" } else { "non-consumable" };
@@ -86,17 +91,18 @@ impl WriterItmsp {
         }
     }
 
-    fn get_checksum(product: &Product) -> Digest {
+    fn get_checksum(&self, product: &Product) -> Digest {
         let mut md5_context = md5::Context::new();
-        md5_context.consume(fs::read(&product.image_path).unwrap());
+        md5_context.consume(fs::read(self.get_full_path_in_image(&product.image_path)).unwrap());
         md5_context.compute()
     }
 
     fn copy_image(&self, app: &App, product: &Product) -> String {
         let image_out = WriterItmsp::get_out_image_file_name(&app, &product, &product.image_path);
+        let image_in_full_path = self.get_full_path_in_image(&product.image_path);
         let image_out_full_path = self.get_full_path_out_image(&image_out);
         if self.with_copy_images {
-            match fs::copy(&product.image_path, &image_out_full_path) {
+            match fs::copy(&image_in_full_path, &image_out_full_path) {
                 Result::Ok(_) => return image_out,
                 Result::Err(_) => {
                     eprintln!("Image [{}] for product [{}] not found", &product.image_path, &product.id);
@@ -109,6 +115,11 @@ impl WriterItmsp {
 
     fn get_full_path_out_image(&self, image_out: &str) -> String {
         format!("{}ios.itmsp/{}", &self.out_directory, &image_out)
+    }
+
+    fn get_full_path_in_image(&self, image_in: &str) -> String {
+        let config_directory = Path::new(&self.config_path).parent().unwrap().to_str().unwrap();
+        if !config_directory.is_empty() {format!("{}/{}", &config_directory, &image_in)} else {image_in.to_string()}
     }
 
     fn get_out_image_file_name(app: &App, product: &Product, in_image: &str) -> String {
