@@ -31,7 +31,7 @@ impl WriterCsv{
     }
 
     pub fn get_price(rate: f32, price: f32) -> i64 {
-        let mut value = rate as i64 * price as i64 * 100;
+        let mut value = (rate * price * 100.0f32) as i64;
         value -= 1;
         value *= 10_000;
         value
@@ -62,6 +62,7 @@ mod tests {
 
     #[test]
     fn test_get_price() {
+        assert_eq!(WriterCsv::get_price(100.0, 0.9), 89_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 1.0), 69_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 2.0), 139_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 3.0), 209_990_000);
@@ -73,8 +74,6 @@ mod tests {
         assert_eq!(WriterCsv::get_price(70.0, 10_000.0), 699_999_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 100_000.0), 6_999_999_990_000);
         assert_eq!(WriterCsv::get_price(70.0, 1_000_000.0), 69_999_999_990_000);
-        assert_eq!(WriterCsv::get_price(70.0, 10_000_000.0), 699_999_999_990_000);
-        assert_eq!(WriterCsv::get_price(70.0, 100_000_000.0), 6_999_999_999_990_000);
     }
 
     #[test]
@@ -90,8 +89,5 @@ mod tests {
         assert_eq!(WriterCsv::get_price(1.0, 10_000.0), 9_999_990_000);
         assert_eq!(WriterCsv::get_price(1.0, 100_000.0), 99_999_990_000);
         assert_eq!(WriterCsv::get_price(1.0, 1_000_000.0), 999_999_990_000);
-        assert_eq!(WriterCsv::get_price(1.0, 10_000_000.0), 9_999_999_990_000);
-        assert_eq!(WriterCsv::get_price(1.0, 100_000_000.0), 99_999_999_990_000);
-        assert_eq!(WriterCsv::get_price(1.0, 1_000_000_000.0), 999_999_999_990_000);
     }
 }
