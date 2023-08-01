@@ -1,7 +1,7 @@
 extern crate clap;
 
 use clap::App;
-
+use std::{process};
 use crate::builder::app::{ANDROID, IOS, BOOT_STRAP};
 
 use self::clap::Arg;
@@ -13,9 +13,9 @@ pub struct AppArgs {
 }
 
 pub fn parse_args() -> AppArgs{
-    let app = App::new("Inapp purchases configs builder")
+    let mut app = App::new("Inapp purchases configs builder")
         .version("0.1")
-        .author("Vladimir Tolmachev. <tolm_vl@hotmail.com>")
+        .author("Author: Vladimir Tolmachev. <tolm_vl@hotmail.com>")
         .about("Build inapp csv for Google Play Market (android), ios.itmsp for AppStore Connect")
         .arg(Arg::with_name("in")
             .short("i")
@@ -29,15 +29,23 @@ pub fn parse_args() -> AppArgs{
             .value_name("path")
             .help("Path to out directory with csv/itmsp files")
             .required(true))
-        .arg(Arg::with_name("platform")
-            .short("p")
-            .long("platform")
-            .value_name("path")
-            .help("list of platforms (android [a], ios [i], bootstrap [b])")
-            .required(true))
-        ;
-
-    let matches = app.get_matches();
+            .arg(Arg::with_name("platform")
+                .short("p")
+                .long("platform")
+                .value_name("path")
+                .help("list of platforms (android [a], ios [i], bootstrap [b])")
+                .required(true));
+            
+    let safe_matches = app.clone().get_matches_safe();
+    let matches = match safe_matches {
+        Ok(v) => v,
+        Err(_) => {
+            // println!("{}", e);
+            app.print_long_help().unwrap();
+            process::exit(0x0);
+        },
+    };
+    // let matches = app.get_matches();
     let mut args = AppArgs {
         config_file: "".to_string(),
         out_directory: "".to_string(),
